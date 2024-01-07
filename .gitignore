@@ -1,32 +1,37 @@
-# Prerequisites
-*.d
+#include <SFML/Graphics.hpp>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using namespace sf;
 
-# Precompiled Headers
-*.gch
-*.pch
+void main()
+{
+    ContextSettings settings;
+    settings.antialiasingLevel = 8;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    RenderWindow window(VideoMode(800, 600), "First Project!", Style::Default, settings);
 
-# Fortran module files
-*.mod
-*.smod
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+    CircleShape shape(100.f);
+    shape.setFillColor(Color::Green);
+    shape.setPosition(Vector2f(100, 300));
 
-# Executables
-*.exe
-*.out
-*.app
+
+    RectangleShape shape2(Vector2f(800, 7));
+    shape2.setFillColor(Color::Blue);
+    shape2.setPosition(Vector2f(0, 500));
+
+    while (window.isOpen())
+    {
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
+
+        window.clear(Color::Black);
+        window.draw(shape);
+        window.draw(shape2);
+        window.display();
+    }
+
+}
